@@ -1,15 +1,15 @@
 extern crate piston_window;
 use piston_window::{Graphics, math::Matrix2d};
-use common::collisonbox::{CollisionBox, FrameData};
+use common::framedata::{FrameData};
 use common::constants::{HIT_BOX_COLOR, HURT_BOX_COLOR};
 
 pub const N_ANIM_STATES: usize = 3;
 
 #[derive(Copy, Clone)]
 pub enum AnimationState {
-    Idle = 0,
-    Walk = 1,
-    Jump = 2,
+    Idle,
+    Walk,
+    Jump,
 }
 
 impl Default for AnimationState {
@@ -76,8 +76,8 @@ pub struct LoopFrameState {
 #[derive(Copy, Clone)]
 pub struct Animation<'a> {
     pub state: AnimationState,
-    hurtboxes: FrameData<'a>,
-    hitboxes: FrameData<'a>,
+    hurtboxes: Option<FrameData<'a>>,
+    hitboxes: Option<FrameData<'a>>,
     frame_state: FrameState,
 }
 
@@ -87,8 +87,13 @@ impl<'a> Animation<'a> {
     }
     pub fn draw<G: Graphics>(&self, t: Matrix2d, g: &mut G) {
         let cf = self.frame_state.cur_frame();
-        self.hurtboxes.draw(cf, HURT_BOX_COLOR, t, g);
-        self.hitboxes.draw(cf, HIT_BOX_COLOR, t, g);
+
+        if let Some(d) = self.hurtboxes {
+            d.draw(cf, HURT_BOX_COLOR, t, g);
+        }
+        if let Some(d) = self.hitboxes {
+            d.draw(cf, HIT_BOX_COLOR, t, g);
+        }
     }
     pub fn tick(&mut self, a: bool) {
         self.frame_state.tick(a);
@@ -99,11 +104,27 @@ impl<'a> Default for Animation<'a> {
     fn default() -> Self {
         Animation {
             state: AnimationState::Idle,
-            hurtboxes: FrameData(Some(&[
-                &[CollisionBox([1.0, 1.0], 10.0),]
+            hurtboxes: Some(FrameData(&[
+                &[[0.0, 0.0, 10.0],],
+                &[[0.0, 0.0, 10.5],],
+                &[[0.0, 0.0, 11.0],],
+                &[[0.0, 0.0, 12.0],],
+                &[[0.0, 0.0, 13.5],],
+                &[[0.0, 0.0, 14.5],],
+                &[[0.0, 0.0, 15.0],],
+                &[[0.0, 0.0, 15.0],],
+                &[[0.0, 0.0, 12.0],],
+                &[[0.0, 0.0, 12.0],],
+                &[[0.0, 0.0, 12.0],],
+                &[[0.0, 0.0, 10.0],],
+                &[[0.0, 0.0, 10.0],],
+                &[[0.0, 0.0, 10.0],],
             ])),
-            hitboxes: FrameData(None),
-            frame_state: Default::default()
+            hitboxes: None,
+            frame_state: FrameState::Once(OnceFrameState{
+                end_frame: 13,
+                ..Default::default()
+            })
         }
     }
 }
