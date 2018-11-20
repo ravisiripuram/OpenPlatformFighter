@@ -1,8 +1,8 @@
-use common::fighter::Fighter;
-use common::controls::*;
+use fighters::common::fighter::Fighter;
+use driver::controls::*;
 use common::constants::*;
 use common::state::*;
-use piston_window::types::{Vec2d, Radius, Color};
+use piston_window::types::{Vec2d};
 use piston_window::{Graphics, Button, ButtonArgs, ButtonState, math::*};
 
 #[macro_export]
@@ -36,7 +36,7 @@ impl<'a> Player<'a> {
     }
 
     pub fn update(&mut self) {
-        self.vel = [  0.0,   0.0];
+        self.vel = [ 0.0,   0.0 ];
         if self.is.is_on(IVal::LInput) {
             self.vel = add(self.vel, LVEC);
         }
@@ -51,11 +51,11 @@ impl<'a> Player<'a> {
         }
         let sl = mag!(self.vel);
         if sl != 0.0 {
-            self.vel = mul_scalar(self.vel, 10.0/sl);
+            self.vel = mul_scalar(self.vel, self.f.walkspeed/sl);
         }
         // println!("{:?}, {:?}, {:?}", self.pos, self.vel, sl);
         self.move_pos();
-        self.f.update(true);
+        self.f.update(self.is.any());
     }
 
     pub fn draw<G: Graphics>(&self, t: Matrix2d, g: &mut G) {
@@ -68,18 +68,21 @@ impl<'a> Player<'a> {
 
     pub fn update_inputs(&mut self, b: &ButtonArgs) {
         self.update_istate(b);
+        // println!("{}", self.is);
         self.update_vstate();        
     }
 
     fn update_istate(&mut self, b: &ButtonArgs) {
         if let Button::Keyboard(k) = b.button {
             if self.c.contains_key(&k) {
+                let u = self.c[&k];
+                // println!("{: >5}: {:021b}", format!("{:?}", k), u);
                 match b.state {
                     ButtonState::Press => {
-                        self.is += self.c[&k] as u32;
+                        self.is += u;
                     },
                     ButtonState::Release => {
-                        self.is -= self.c[&k] as u32;
+                        self.is -= u;
                     }
                 }
             }

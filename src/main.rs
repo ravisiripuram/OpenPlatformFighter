@@ -2,9 +2,11 @@ extern crate piston_window;
 extern crate button_tracker;
 use piston_window::*;
 mod common;
+mod driver;
+mod fighters;
 use common::constants::*;
-use common::player::*;
-use common::controls::*;
+use driver::player::Player;
+use driver::controls::*;
 
 fn main() {
     //init
@@ -33,7 +35,7 @@ fn main() {
                     Loop::Render(_r) => {
 
                         window.draw_2d(&e, |c, g| {
-                            clear([0.5, 1.0, 0.5, 1.0], g);
+                            clear([0.0, 0.0, 0.0, 1.0], g);
                             p1.draw(c.transform, g);
                         });
                     },
