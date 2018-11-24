@@ -1,0 +1,44 @@
+[num-traits 0.2.6] cargo:rustc-cfg=has_i128
+[proc-macro2 0.4.21] cargo:rerun-if-changed=build.rs
+[rayon-core 1.4.1] cargo:rerun-if-changed=build.rs
+[proc-macro2 0.4.21] cargo:rustc-cfg=u128
+[proc-macro2 0.4.21] cargo:rustc-cfg=use_proc_macro
+[proc-macro2 0.4.21] cargo:rustc-cfg=wrap_proc_macro
+[num-integer 0.1.39] cargo:rustc-cfg=has_i128
+[serde 1.0.80] cargo:rustc-cfg=de_boxed_c_str
+[serde 1.0.80] cargo:rustc-cfg=de_rc_dst
+[serde 1.0.80] cargo:rustc-cfg=core_duration
+[serde 1.0.80] cargo:rustc-cfg=integer128
+[serde 1.0.80] cargo:rustc-cfg=range_inclusive
+[serde 1.0.80] cargo:rustc-cfg=num_nonzero
+[num-rational 0.2.1] cargo:rustc-cfg=has_i128
+[num-iter 0.1.37] cargo:rustc-cfg=has_i128
+[open_platform_fighter 0.1.0] "/home/ram/Projects/Rust/OpenPlatformFighter/target/debug/build/open_platform_fighter-75011f517ef511f3/out"
+[num-derive 0.2.3] cargo:rustc-cfg=has_i128
+[libloading 0.5.0] cargo:rustc-link-lib=dl
+[libloading 0.5.0] TARGET = Some("x86_64-unknown-linux-gnu")
+[libloading 0.5.0] OPT_LEVEL = Some("0")
+[libloading 0.5.0] HOST = Some("x86_64-unknown-linux-gnu")
+[libloading 0.5.0] CC_x86_64-unknown-linux-gnu = None
+[libloading 0.5.0] CC_x86_64_unknown_linux_gnu = None
+[libloading 0.5.0] HOST_CC = None
+[libloading 0.5.0] CC = None
+[libloading 0.5.0] CFLAGS_x86_64-unknown-linux-gnu = None
+[libloading 0.5.0] CFLAGS_x86_64_unknown_linux_gnu = None
+[libloading 0.5.0] HOST_CFLAGS = None
+[libloading 0.5.0] CFLAGS = None
+[libloading 0.5.0] DEBUG = Some("true")
+[libloading 0.5.0] running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-Wall" "-Wextra" "-o" "/home/ram/Projects/Rust/OpenPlatformFighter/target/debug/build/libloading-44ef83274980f4cd/out/src/os/unix/global_static.o" "-c" "src/os/unix/global_static.c"
+[rayon 1.0.3] cargo:rustc-cfg=has_i128
+[x11-dl 2.18.3] cargo:rustc-link-lib=dl
+[libloading 0.5.0] exit code: 0
+[libloading 0.5.0] AR_x86_64-unknown-linux-gnu = None
+[libloading 0.5.0] AR_x86_64_unknown_linux_gnu = None
+[libloading 0.5.0] HOST_AR = None
+[libloading 0.5.0] AR = None
+[libloading 0.5.0] running: "ar" "crs" "/home/ram/Projects/Rust/OpenPlatformFighter/target/debug/build/libloading-44ef83274980f4cd/out/libglobal_static.a" "/home/ram/Projects/Rust/OpenPlatformFighter/target/debug/build/libloading-44ef83274980f4cd/out/src/os/unix/global_static.o"
+[libloading 0.5.0] exit code: 0
+[libloading 0.5.0] cargo:rustc-link-lib=static=global_static
+[libloading 0.5.0] cargo:rustc-link-search=native=/home/ram/Projects/Rust/OpenPlatformFighter/target/debug/build/libloading-44ef83274980f4cd/out
+[parking_lot_core 0.3.1] cargo:rustc-cfg=has_localkey_try_with
+[glutin 0.19.0] cargo:rerun-if-changed=build.rs

@@ -1,10 +1,13 @@
 #![allow(dead_code)]
 
-pub mod animation;
-pub mod framedata;
-pub mod state;
 #[macro_use]
 pub mod constants;
+
+pub mod frame;
+pub mod animation;
+pub mod state;
+pub mod fighter;
+pub mod stage;
 
 pub trait Drawable {
     fn draw(&self);

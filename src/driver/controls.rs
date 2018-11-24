@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use piston_window::{Key};
 use common::state::IVal;
 
-pub type Controls = HashMap<Key, u32>; 
+pub type Controls = HashMap<Key, u32>;
 
 pub fn controls1() -> Controls {
     [
@@ -10,6 +10,7 @@ pub fn controls1() -> Controls {
         (Key::D,     IVal::RInput as u32),
         (Key::S,     IVal::DInput as u32),
         (Key::W,     IVal::JInput | IVal::UInput),
+        (Key::L,     IVal::JInput as u32),
         (Key::O,     IVal::BInput as u32),
         (Key::I,     IVal::AInput as u32),
         (Key::Space, IVal::SInput as u32),
