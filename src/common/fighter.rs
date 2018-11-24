@@ -54,9 +54,10 @@ impl<'a> Fighter<'a> {
             }
             return false;
         } else if active && self.aa[self.astate].interruptable()
-        || (!active && self.aa[self.astate].done()) {
-            self.aa[self.astate].reset();
+        || (self.aa[self.astate].done()) {
+            // self.aa[self.astate].reset();
             self.astate = state;
+            self.aa[self.astate].reset();
             return true
         }
         return false

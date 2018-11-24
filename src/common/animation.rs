@@ -37,18 +37,17 @@ impl<'a> Animation<'a> {
             cur_partial: 0
         }
     }
-    fn next_partial(&mut self) -> bool {
-        if self.cur_partial + 1 < self.num_partials {
-            self.cur_partial += 1;
-            return true;
-        }
-        return false;
-    }
     pub fn state(&self) -> AnimationState {
         self.state
     }
     pub fn draw<G: Graphics>(&self, t: Matrix2d, g: &mut G) {
         self.partials[self.cur_partial].draw(self.frametypes[self.cur_partial].cur_frame(), t, g);
+    }
+    fn next_partial(&mut self) {
+        if self.cur_partial + 1 < self.num_partials {
+            self.cur_partial += 1;
+            self.frametypes[self.cur_partial].reset();
+        }
     }
     pub fn tick(&mut self, active: bool) {
         match self.frametypes[self.cur_partial] {

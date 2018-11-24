@@ -55,7 +55,6 @@ impl FrameType {
         };
     }
     pub fn tick(&mut self) {
-        println!("tick");
         match self {
             FrameType::Single(ref mut a) => { a.cur_frame = (a.cur_frame + 1) % a.end_frame; },
             FrameType::Repeat(ref mut a) => { a.cur_frame = (a.cur_frame + 1) % a.end_frame; },
@@ -69,14 +68,8 @@ impl FrameType {
     }
     pub fn interruptable(&self) -> bool {
         match self {
-            FrameType::Single(a) => {
-                // println!("auto: {}, {}", autointerrupt, autointerrupt && a.autointer);
-                a.cur_frame >= a.faf_frame
-            },
-            FrameType::Repeat(a) => {
-                // println!("auto: {}, {}", autointerrupt, autointerrupt && a.autointer);
-                a.cur_frame >= a.faf_frame
-            },
+            FrameType::Single(a) => { a.cur_frame >= a.faf_frame },
+            FrameType::Repeat(a) => { a.cur_frame >= a.faf_frame },
         }
     }
 }
