@@ -50,6 +50,10 @@ impl<'a> Player<'a> {
                 self.jt.1 = true;
             }
         }
+        if self.is.rising(IVal::AInput) {
+            // println!("rising: {}", self.is);
+            self.f.set_astate(AnimationState::Jab, true, self.is.rising(IVal::AInput));
+        }
         if !self.is.any() || (self.is.is_on(IVal::JInput) && !self.is.rising(IVal::JInput)) {
             self.f.set_astate(AnimationState::Idle, false, false);
         }

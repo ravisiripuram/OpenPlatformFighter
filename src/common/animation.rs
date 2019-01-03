@@ -3,13 +3,14 @@ use std::fmt::Display;
 use piston_window::{Graphics, math::Matrix2d};
 use common::frame::*;
 
-pub const N_ANIM_STATES: usize = 3;
+pub const N_ANIM_STATES: usize = 4;
 
 #[derive(Copy, Clone, PartialEq, Display)]
 pub enum AnimationState {
     Idle,
     Walk,
     Jump,
+    Jab
 }
 impl Default for AnimationState {
     fn default() -> Self {

@@ -82,6 +82,20 @@ pub fn new<'a>() -> Fighter<'a> {
             ])],
         vec![FrameType::single(14,0)],
     );
+    aa += Animation::new(
+        AnimationState::Jab,
+        vec![FrameData(
+            &[
+                &[Frame::Hurt(&[[0.0, -8.0, 8.0],]), Frame::Hit(&[[9.0, -8.0, 3.5],])],
+                &[Frame::Hurt(&[[0.0, -8.0, 8.0],]), Frame::Hit(&[[9.0, -8.0, 3.5],])],
+                &[Frame::Hurt(&[[0.0, -8.0, 8.0],]), Frame::Hit(&[[9.0, -8.0, 3.5],])],
+                &[Frame::Hurt(&[[0.0, -8.0, 8.0],]), Frame::Hit(&[[9.0, -8.0, 3.5],])],
+                &[Frame::Hurt(&[[0.0, -8.0, 8.0],]),],
+                &[Frame::Hurt(&[[0.0, -8.0, 8.0],]),],
+            ]
+        )],
+        vec![FrameType::single(6,0)],
+    );
     Fighter {
         aa: aa,
         astate: AnimationState::Idle,
