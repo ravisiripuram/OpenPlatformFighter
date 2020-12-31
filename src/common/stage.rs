@@ -1,5 +1,7 @@
 use piston_window::{Graphics, math::*, types::{Color, Line, Polygon, Vec2d}, line, polygon};
 use common::constants::*;
+use common::state::VVal;
+use driver::player::Player;
 
 pub struct Platform<'a>(pub Polygon<'a>, pub Color);
 impl<'a> Platform<'a> {
@@ -31,6 +33,25 @@ impl<'a> Stage<'a> {
             }
         }
     }
+
+    pub fn collision_check(&self, v: Vec2d) -> bool {
+        for p in self.platforms.iter() {
+            if (v[0] >= p.0[0][0] + self.pos[0] && v[0] <= p.0[1][0] + self.pos[0]) 
+            && (v[1] >= p.0[0][1] + self.pos[1] && v[1] <= p.0[2][1] + self.pos[1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    pub fn update_player(&self, p: &mut Player) {
+        if self.collision_check(p.pos) {
+            p.vs += VVal::Grounded
+        } else {
+            p.vs -= VVal::Grounded
+        }
+    }
+    
 }
 impl<'a> Default for Stage<'a> {
     fn default() -> Self {

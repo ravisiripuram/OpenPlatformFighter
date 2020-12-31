@@ -25,10 +25,11 @@ fn main() {
     // window.set_max_fps(FRAMES_PER_SECOND);
     let mut p1 = Player::new(test::new(), controls1());
     let stage = Stage::default();
+
     //game loop
     while let Some(e) = window.next() {
         match e {
-            Event::Input(i) => {
+            Event::Input(i, o) => {
                 match i {
                     Input::Button(b) => {
                         p1.update_inputs(&b)
@@ -39,14 +40,15 @@ fn main() {
             Event::Loop(l) => {
                 match l {
                     Loop::Render(_r) => {
-
-                        window.draw_2d(&e, |c, g| {
+                        
+                        window.draw_2d(&e, |c, g, _| {
                             clear([0.0, 0.0, 0.0, 1.0], g);
                             stage.draw(c.transform, g);
                             p1.draw(c.transform, g);
                         });
                     },
                     Loop::Update(u) => {
+                        stage.update_player(&mut p1);
                         p1.update(u.dt);
                     },
                     _ => {}

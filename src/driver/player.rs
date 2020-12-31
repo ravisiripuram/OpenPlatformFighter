@@ -8,8 +8,8 @@ pub struct Player<'a> {
     f: Fighter<'a>,
     c: Controls,
     is: State,
-    vs: State,
-    pos: Vec2d,
+    pub vs: State,
+    pub pos: Vec2d,
     vel: Vec2d,
     fvel: Vec2d,
     acc: Vec2d,
@@ -32,7 +32,9 @@ impl<'a> Player<'a> {
     }
     pub fn update(&mut self, dt: f64) {
         // println!("{:?}", self.is);
-        println!("{:?}", self.f.aa[self.f.astate]);
+        // println!("{:?}", self.vs);
+        // println!("{:?}", self.f.aa[self.f.astate]);
+
         self.f.update(self.is.any());
         if self.is.is_on(IVal::SInput) {
             self.pos = [100.0, 100.0];
@@ -61,7 +63,7 @@ impl<'a> Player<'a> {
         self.update_vel(dt);
         self.move_pos(dt);
         // if last_astate != self.f.astate { println!("{}, {}", last_astate, self.f.astate); }
-        self.update_vstate();
+        // self.update_vstate();
         self.is.update();
         self.vs.update();
     }

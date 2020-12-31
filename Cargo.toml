@@ -5,7 +5,7 @@ authors = ["ramsir3 <ramsir3@gmail.com>"]
 # build = "build.rs" 
 
 [dependencies]
-piston_window = "0.85.0"
+piston_window = "0.116.0"
 enum-display-derive = "0.1.0"
 
 # [build-dependencies]
